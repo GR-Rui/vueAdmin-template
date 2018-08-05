@@ -1,0 +1,56 @@
+<template>
+  <div class="app-container">
+    <el-row>
+      <el-col :span="6" v-for="(o, index) in list" :key="o.id" :offset="index > 0 ? 0 : 0">
+        <el-card :body-style="{ padding: '0px' }">
+          <img src="http://7xkufz.com2.z0.glb.qiniucdn.com/Fq3fB5B1tF8F1KugEe9EfWYhQ0pa?imageView2/0/w/256" class="image">
+          <div style="padding: 14px;">
+            <span>好吃的汉堡</span>
+            <div class="bottom clearfix">
+              <time class="time">xxxxx</time>
+              <el-button type="text" class="button">操作按钮</el-button>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<script>
+import { getMatchList } from "@/api/match";
+
+export default {
+  data() {
+    return {
+      list: null,
+      listLoading: true
+    };
+  },
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        published: "success",
+        draft: "gray",
+        deleted: "danger"
+      };
+      return statusMap[status];
+    }
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.listLoading = true;
+      getMatchList({ passport: "uwm02paoxzbgtgxen6wwzvqjvilxnuab" }).then(
+        response => {
+          var result = response.messages.data;
+          this.list = result.matches;
+          this.listLoading = false;
+        }
+      );
+    }
+  }
+};
+</script>
