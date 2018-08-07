@@ -6,5 +6,4 @@ export function getMatchList(params) {
     method: 'get',
     params
   })
-
 }

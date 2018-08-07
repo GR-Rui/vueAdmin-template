@@ -24,17 +24,44 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-  { path: '/projects', component: () => import('@/views/projects/index'), hidden: true },
+  
+  {
+    path: '/projects',
+    name: 'projects',
+    hidden: true,
+    component: () => import('@/views/projects/index')
+  },
 
   {
-    path: '/',
+    path: '/dashboard/:id(\\d+)',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
-    hidden: true,
+    children: [
+      {
+        path: '',
+        name: 'Dashboard',
+        props: true,
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '概况', icon: 'example' }
+      }
+    ]
+  },
+
+  {
+    path: '/match',
+    component: Layout,
+    redirect: '/match/basic',
+    name: 'Match',
+    meta: { title: '赛事信息', icon: 'example' },
     children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
+      path: 'basic',
+      name: 'Basic',
+      component: () => import('@/views/basic/index'),
+      meta: { title: '基本信息', icon: 'table' }
+    },{
+      path: 'rule',
+      name: 'Rule',
+      component: () => import('@/views/tree/index'),
+      meta: { title: '赛事规则', icon: 'tree' }
     }]
   },
 
@@ -65,7 +92,7 @@ export const constantRouterMap = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '',
         name: 'Form',
         component: () => import('@/views/form/index'),
         meta: { title: 'Form', icon: 'form' }

@@ -18,39 +18,39 @@
 </template>
 
 <script>
-import { getMatchList } from "@/api/match";
+import { getMatchList } from '@/api/match'
 
 export default {
   data() {
     return {
       list: null,
       listLoading: true
-    };
+    }
   },
   filters: {
     statusFilter(status) {
       const statusMap = {
-        published: "success",
-        draft: "gray",
-        deleted: "danger"
-      };
-      return statusMap[status];
+        published: 'success',
+        draft: 'gray',
+        deleted: 'danger'
+      }
+      return statusMap[status]
     }
   },
   created() {
-    this.fetchData();
+    this.fetchData()
   },
   methods: {
     fetchData() {
-      this.listLoading = true;
-      getMatchList({ passport: "uwm02paoxzbgtgxen6wwzvqjvilxnuab" }).then(
+      this.listLoading = true
+      getMatchList({ passport: 'uwm02paoxzbgtgxen6wwzvqjvilxnuab' }).then(
         response => {
-          var result = response.messages.data;
-          this.list = result.matches;
-          this.listLoading = false;
+          var result = response.messages.data
+          this.list = result.matches
+          this.listLoading = false
         }
-      );
+      )
     }
   }
-};
+}
 </script>
