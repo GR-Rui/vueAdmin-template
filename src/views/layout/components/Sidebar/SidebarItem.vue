@@ -1,8 +1,8 @@
 <template>
   <div v-if="!item.hidden&&item.children" class="menu-wrapper">
 
-      <router-link v-if="hasOneShowingChild(item.children) && !onlyOneChild.children&&!item.alwaysShow" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
+      <router-link v-if="hasOneShowingChild(item.children) && !onlyOneChild.children&&!item.alwaysShow" :to="resolvePath1(onlyOneChild.name)">
+        <el-menu-item :index="resolvePath1(onlyOneChild.name)" :class="{'submenu-title-noDropdown':!isNest}">
           <svg-icon v-if="onlyOneChild.meta&&onlyOneChild.meta.icon" :icon-class="onlyOneChild.meta.icon"></svg-icon>
           <span v-if="onlyOneChild.meta&&onlyOneChild.meta.title" slot="title">{{onlyOneChild.meta.title}}</span>
         </el-menu-item>
@@ -17,8 +17,8 @@
         <template v-for="child in item.children" v-if="!child.hidden">
           <sidebar-item :is-nest="true" class="nest-menu" v-if="child.children&&child.children.length>0" :item="child" :key="child.path" :base-path="resolvePath(child.path)"></sidebar-item>
 
-          <router-link v-else :to="resolvePath(child.path)" :key="child.name">
-            <el-menu-item :index="resolvePath(child.path)">
+          <router-link v-else :to="resolvePath1(child.name)" :key="child.name">
+            <el-menu-item :index="resolvePath1(child.name)">
               <svg-icon v-if="child.meta&&child.meta.icon" :icon-class="child.meta.icon"></svg-icon>
               <span v-if="child.meta&&child.meta.title" slot="title">{{child.meta.title}}</span>
             </el-menu-item>
@@ -71,8 +71,23 @@ export default {
       return false
     },
     resolvePath(...paths) {
-      return path.resolve(this.basePath, ...paths)
+      var s = path.resolve(this.basePath, ...paths)
+      return s
+    },
+    resolvePath1(name) {
+      name = name.split('-')
+      if(name.length > 1) {
+        var s = '/' + name[0] + '/' + this.$route.params['id'] + '/' + name[1]
+      }else{
+        if(name[0] == 'projects' || name[0] == 'apply') {
+          var s = '/' + name[0]
+        } else {
+          var s = '/' + name[0] + '/' + this.$route.params['id']
+        }
+      }
+      return s
     }
+    
   }
 }
 </script>

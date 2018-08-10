@@ -8,7 +8,8 @@
             <span>好吃的汉堡</span>
             <div class="bottom clearfix">
               <time class="time">xxxxx</time>
-              <el-button type="text" class="button">操作按钮</el-button>
+              <el-button type="text" class="button" @click.native="goDetails(o.id)">操作按钮</el-button>
+              <router-link :to="{name: 'dashboard-index', params: {id: o.id}}">dddddddddd</router-link>
             </div>
           </div>
         </el-card>
@@ -19,6 +20,7 @@
 
 <script>
 import { getMatchList } from '@/api/match'
+import router from '@/router'
 
 export default {
   data() {
@@ -43,13 +45,16 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getMatchList({ passport: 'uwm02paoxzbgtgxen6wwzvqjvilxnuab' }).then(
+      getMatchList({ passport: 'bhhlvpbudl9lfu5fdoivnk455pjq7ark' }).then(
         response => {
           var result = response.messages.data
           this.list = result.matches
           this.listLoading = false
         }
       )
+    },
+    goDetails(id) {
+      router.push({ name: 'dashboard-index', params: { id: id }})
     }
   }
 }

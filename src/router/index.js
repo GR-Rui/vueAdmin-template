@@ -24,29 +24,64 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-  
-  {
-    path: '/projects',
-    name: 'projects',
-    hidden: true,
-    component: () => import('@/views/projects/index')
-  },
 
   {
-    path: '/dashboard/:id(\\d+)',
-    component: Layout,
+    path: '/projects',
+    component: () => import('@/views/projects/index'),
     children: [
       {
         path: '',
-        name: 'Dashboard',
-        props: true,
-        component: () => import('@/views/dashboard/index'),
-        meta: { title: '概况', icon: 'example' }
+        name: 'projects',
+        meta: { title: '所有赛事', icon: 'example' }
       }
     ]
   },
 
   {
+    path: '/apply',
+    component: () => import('@/views/projects/index'),
+    children: [
+      {
+        path: '',
+        name: 'apply',
+        meta: { title: '申请赛事', icon: 'example' }
+      }
+    ]
+  },
+
+  {
+    path: '/dashboard/:id',
+    name: 'dashboard',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'dashboard-index',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '赛事概况', icon: 'example' }
+      }
+    ]
+  },
+  {
+    path: '/match/:id',
+    component: Layout,
+    // redirect: '/match/basic',
+    name: 'match',
+    meta: { title: '赛事信息', icon: 'example' },
+    children: [{
+      path: 'basic',
+      name: 'match-basic',
+      component: () => import('@/views/basic/index'),
+      meta: { title: '基本信息', icon: 'table' }
+    },{
+      path: 'rule',
+      name: 'match-rule',
+      component: () => import('@/views/tree/index'),
+      meta: { title: '赛事规则', icon: 'tree' }
+    }]
+  },
+
+  /*{
     path: '/match',
     component: Layout,
     redirect: '/match/basic',
@@ -156,7 +191,7 @@ export const constantRouterMap = [
         meta: { title: 'menu2' }
       }
     ]
-  },
+  },*/
 
   { path: '*', redirect: '/404', hidden: true }
 ]
