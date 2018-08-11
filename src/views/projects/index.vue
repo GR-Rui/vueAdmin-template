@@ -45,10 +45,10 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getMatchList({ passport: 'bhhlvpbudl9lfu5fdoivnk455pjq7ark' }).then(
+      getMatchList().then(
         response => {
-          var result = response.messages.data
-          this.list = result.matches
+          const data = response.data
+          this.list = data.matches
           this.listLoading = false
         }
       )

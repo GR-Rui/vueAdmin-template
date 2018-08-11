@@ -26,11 +26,12 @@ export const constantRouterMap = [
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {
-    path: '/projects',
+    path: '/',
+    redirect: '/projects',
     component: () => import('@/views/projects/index'),
     children: [
       {
-        path: '',
+        path: 'projects',
         name: 'projects',
         meta: { title: '所有赛事', icon: 'example' }
       }

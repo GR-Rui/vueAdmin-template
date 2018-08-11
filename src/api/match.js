@@ -1,8 +1,9 @@
-import request from '@/utils/request1'
+import request from '@/utils/request'
+import { apiPath } from '@/utils'
 
 export function getMatchList(params) {
   return request({
-    url: '/GetMyManageBMMatchList.json',
+    url: apiPath().api + '/GetMyManageBMMatchList.json',
     method: 'get',
     params
   })

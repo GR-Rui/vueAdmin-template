@@ -19,7 +19,7 @@ const match = {
         // 获取我的赛事列表
         GetMatchList({ commit, state }) {
             return new Promise((resolve, reject) => {
-                getMatchList({ passport: 'uwm02paoxzbgtgxen6wwzvqjvilxnuab' }).then(response => {
+                getMatchList().then(response => {
                     const data = response.data
                     commit('SET_LIST', [{ id: 33 }])
                     //   if (data.roles && data.roles.length > 0) {

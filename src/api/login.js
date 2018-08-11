@@ -1,27 +1,32 @@
 import request from '@/utils/request'
+import { apiPath } from '@/utils'
 
 export function login(username, password) {
+  const params = {
+    username: username,
+    password: password
+  }
   return request({
-    url: '/user/login',
+    url: apiPath().auth + '/login.do',
     method: 'post',
-    data: {
-      username,
-      password
-    }
+    {params:111}
   })
 }
 
 export function getInfo(token) {
+  var params = {
+    passport: token
+  }
   return request({
-    url: '/user/info',
+    url: apiPath().api + '/GetUserInfo.do',
     method: 'get',
-    params: { token }
+    params
   })
 }
 
 export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
-  })
+  // return request({
+  //   url: '/user/logout',
+  //   method: 'post'
+  // })
 }
