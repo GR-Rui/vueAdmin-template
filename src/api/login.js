@@ -9,7 +9,7 @@ export function login(username, password) {
   return request({
     url: apiPath().auth + '/login.do',
     method: 'post',
-    {params:111}
+    params
   })
 }
 
