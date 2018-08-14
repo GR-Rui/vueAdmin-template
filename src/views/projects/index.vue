@@ -3,7 +3,8 @@
     <el-row>
       <el-col :span="6" v-for="(o, index) in list" :key="o.id" :offset="index > 0 ? 0 : 0">
         <el-card :body-style="{ padding: '0px' }">
-          <img src="http://7xkufz.com2.z0.glb.qiniucdn.com/Fq3fB5B1tF8F1KugEe9EfWYhQ0pa?imageView2/0/w/256" class="image">
+          <img v-if="o.icon" v-bind:src="imgFormat(o.icon)" class="image">
+          <img v-else v-bind:src="imgFormat('FpQYAkEL3KEM4DvunzsprUAhnU8p')" class="image">
           <div style="padding: 14px;">
             <span>好吃的汉堡</span>
             <div class="bottom clearfix">
@@ -21,6 +22,7 @@
 <script>
 import { getMatchList } from '@/api/match'
 import router from '@/router'
+import { imageView } from '@/utils'
 
 export default {
   data() {
@@ -28,6 +30,8 @@ export default {
       list: null,
       listLoading: true
     }
+  },
+  computed:{
   },
   filters: {
     statusFilter(status) {
@@ -55,6 +59,9 @@ export default {
     },
     goDetails(id) {
       router.push({ name: 'dashboard-index', params: { id: id }})
+    },
+    imgFormat(hash) {
+      return imageView(hash, 100, 100, 1)
     }
   }
 }

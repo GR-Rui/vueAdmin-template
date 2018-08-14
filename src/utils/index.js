@@ -57,9 +57,29 @@ export function formatTime(time, option) {
   }
 }
 
+export function imageView(hash, w, h, mode, format) {
+  let url = '';
+  if (!hash.match(/^(http|https):/i)) {
+    url = process.env.QINIU_CDN + '/' + hash;
+  }
+  if (url.match(/qiniucdn\.com/i) || /live.banmabang.cn/.test(url)
+    || url.match(/images\.banmabang\.cn/i) || url.match(/images\.snsports\.cn/i)) {
+    if (url.indexOf('?') < 0) {
+      url = url + "?imageView2/" + mode + "/w/" + w + "/h/" + h;
+      if (format) {
+        url += '/format/' + format;
+        if (format == 'jpg') {
+          url += '/interlace/1';
+        }
+      }
+    }
+  }
+  return url;
+}
+
 export function apiPath() {
   return {
     api: '/api/content/pc',
-    auth: '/api_passport' 
+    auth: '/api_passport'
   }
 }

@@ -8,3 +8,11 @@ export function getMatchList(params) {
     params
   })
 }
+
+export function getQiniuToken(params) {
+  return request({
+    url: apiPath().api + '/GetQiniuUploadToken.json',
+    method: 'get',
+    params
+  })
+}

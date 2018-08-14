@@ -2,5 +2,6 @@
 module.exports = {
   NODE_ENV: '"production"',
   BASE_API: '"https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin"',
-  BANMA_API: '"http://test.api.snsports.cn"'
+  BANMA_API: '"http://test.api.snsports.cn"',
+  QINIU_SERVER: '"http://images.snsports.cn"'
 }
