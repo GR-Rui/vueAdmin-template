@@ -82,6 +82,27 @@ export const constantRouterMap = [
     }]
   },
 
+  {
+    path: '/demo/:id',
+    component: Layout,
+    name: 'demo',
+    meta: { title: '示例参考', icon: 'example' },
+    children: [
+      {
+        path: 'upload',
+        name: 'demo-upload',
+        component: () => import('@/views/demo/upload'),
+        meta: { title: '上传示例', icon: 'example' }
+      },
+      {
+        path: 'rich',
+        name: 'demo-rich',
+        component: () => import('@/views/demo/rich-editor'),
+        meta: { title: '富文本示例', icon: 'example' }
+      }
+    ]
+  },
+
   /*{
     path: '/match',
     component: Layout,

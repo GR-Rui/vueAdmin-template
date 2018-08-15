@@ -83,3 +83,17 @@ export function apiPath() {
     auth: '/api_passport'
   }
 }
+
+/*
+  * state 上线后的4种状态 0, 1, 2, 3
+  * status 未上线 -1，已上线 0
+  * */
+export function matchStatusMap(state, status) {
+  var ret = '';
+  if(status == 0) {
+    ret = ['报名中', '待开赛', '进行中', '已结束'][state];
+  }else{
+    ret = '待上线';
+  }
+  return ret
+}
