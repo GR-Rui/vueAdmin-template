@@ -89,6 +89,7 @@ export default {
     },
 
     beforeUpload(file) {
+      const accepts = 'image/jpeg, image/jpg, image/png, image/gif, application/zip, application/x-zip-compressed'
       console.log(file);
       const keyName = Number.parseInt(Math.random() * 100000000, 10) + '.png'
       return getQiniuToken({}).then(
