@@ -36,10 +36,9 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-import * as Quill from 'quill';
-    console.log(Quill);
+// import * as Quill from 'quill';
 import { quillEditor } from 'vue-quill-editor'
-import { ImageResize } from 'quill-image-resize-module'
+// import { ImageResize } from 'quill-image-resize-module'
 // Quill.register('modules/imageResize', ImageResize);
 
 // const quill = new Quill(myQuillEditor, {
