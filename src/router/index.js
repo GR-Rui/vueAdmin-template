@@ -74,7 +74,7 @@ export const constantRouterMap = [
       name: 'match-basic',
       component: () => import('@/views/basic/index'),
       meta: { title: '基本信息', icon: 'table' }
-    },{
+    }, {
       path: 'rule',
       name: 'match-rule',
       component: () => import('@/views/tree/index'),
@@ -103,7 +103,7 @@ export const constantRouterMap = [
     ]
   },
 
-  /*{
+  /* {
     path: '/match',
     component: Layout,
     redirect: '/match/basic',

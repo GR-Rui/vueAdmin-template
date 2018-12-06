@@ -59,37 +59,37 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        region: ""
+        name: '',
+        region: ''
       },
       imageUrl: '',
       hoho: {}
-    };
+    }
   },
   methods: {
     onSubmit() {
-      this.$message("submit!");
+      this.$message('submit!')
     },
     onCancel() {
       this.$message({
-        message: "cancel!",
-        type: "warning"
-      });
+        message: 'cancel!',
+        type: 'warning'
+      })
     },
     handleAvatarSuccess(res, file) {
       this.imageUrl = imageView(res.hash, 80, 80, 1)
     },
     beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
-        return;
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+        return
       }
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
-        return;
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+        return
       }
       return getQiniuToken({}).then(
         response => {
@@ -100,7 +100,7 @@ export default {
       )
     }
   }
-};
+}
 </script>
 
 <style>

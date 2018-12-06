@@ -76,18 +76,18 @@ export default {
     },
     resolvePath1(name) {
       name = name.split('-')
-      if(name.length > 1) {
-        var s = '/' + name[0] + '/' + this.$route.params['id'] + '/' + name[1]
-      }else{
-        if(name[0] == 'projects' || name[0] == 'apply') {
-          var s = '/' + name[0]
+      var s = ''
+      if (name.length > 1) {
+        s = '/' + name[0] + '/' + this.$route.params['id'] + '/' + name[1]
+      } else {
+        if (name[0] === 'projects' || name[0] === 'apply') {
+          s = '/' + name[0]
         } else {
-          var s = '/' + name[0] + '/' + this.$route.params['id']
+          s = '/' + name[0] + '/' + this.$route.params['id']
         }
       }
       return s
     }
-    
   }
 }
 </script>

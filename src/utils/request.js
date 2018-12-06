@@ -31,9 +31,9 @@ service.interceptors.response.use(
   */
     const res = response.data
     if (res.error) {
-      const error = res.messages.error;
-      let message = '';
-      if (error.code == 'login_required' || error.code == 'login_account_expired' || error.code == 'login_account_denied') {
+      const error = res.messages.error
+      let message = ''
+      if (error.code === 'login_required' || error.code === 'login_account_expired' || error.code === 'login_account_denied') {
         // router.push('login', {action: error.code});
         MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
           confirmButtonText: '重新登录',
@@ -45,7 +45,7 @@ service.interceptors.response.use(
           })
         })
       } else {
-        if(res.code == 500 && error.code == 'internal_error') {
+        if (res.code === 500 && error.code === 'internal_error') {
           message = '内部错误：' + error.message
         } else {
           message = error.message

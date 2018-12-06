@@ -41,26 +41,26 @@ export default {
   data() {
     return {
       imageUrl: '',
-      hoho:{},
+      hoho: {},
       dialogImageUrl: '',
       dialogVisible: false
-    };
+    }
   },
   methods: {
     handleAvatarSuccess(res, file) {
       this.imageUrl = imageView(res.hash, 80, 80, 1)
     },
     beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/png';
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isJPG = file.type === 'image/png'
+      const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
-        return;
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+        return
       }
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
-        return;
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+        return
       }
       return getQiniuToken({}).then(
         response => {
@@ -71,11 +71,11 @@ export default {
       )
     },
     handleRemove(file, fileList) {
-      console.log(file, fileList);
+      console.log(file, fileList)
     },
     handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
       return getQiniuToken({}).then(
         response => {
           const data = response.data
@@ -85,12 +85,12 @@ export default {
       )
     },
     submitUpload() {
-      this.$refs.upload.submit();
+      this.$refs.upload.submit()
     },
 
     beforeUpload(file) {
-      const accepts = 'image/jpeg, image/jpg, image/png, image/gif, application/zip, application/x-zip-compressed'
-      console.log(file);
+      // const accepts = 'image/jpeg, image/jpg, image/png, image/gif, application/zip, application/x-zip-compressed'
+      console.log(file)
       const keyName = Number.parseInt(Math.random() * 100000000, 10) + '.png'
       return getQiniuToken({}).then(
         response => {
@@ -103,13 +103,10 @@ export default {
 
     handleSuccess(res, file, fileList) {
       // this.imageUrl = imageView(res.hash, 80, 80, 1)
-      console.log(file);
+      console.log(file)
     }
-
-
-
   }
-};
+}
 </script>
 
 <style>

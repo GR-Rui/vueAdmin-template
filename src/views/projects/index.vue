@@ -32,7 +32,7 @@ export default {
       listLoading: true
     }
   },
-  computed:{
+  computed: {
   },
   filters: {
     statusFilter(status) {

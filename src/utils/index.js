@@ -58,23 +58,23 @@ export function formatTime(time, option) {
 }
 
 export function imageView(hash, w, h, mode, format) {
-  let url = '';
+  let url = ''
   if (!hash.match(/^(http|https):/i)) {
-    url = process.env.QINIU_CDN + '/' + hash;
+    url = process.env.QINIU_CDN + '/' + hash
   }
-  if (url.match(/qiniucdn\.com/i) || /live.banmabang.cn/.test(url)
-    || url.match(/images\.banmabang\.cn/i) || url.match(/images\.snsports\.cn/i)) {
+  if (url.match(/qiniucdn\.com/i) || /live.banmabang.cn/.test(url) ||
+    url.match(/images\.banmabang\.cn/i) || url.match(/images\.snsports\.cn/i)) {
     if (url.indexOf('?') < 0) {
-      url = url + "?imageView2/" + mode + "/w/" + w + "/h/" + h;
+      url = url + '?imageView2/' + mode + '/w/' + w + '/h/' + h
       if (format) {
-        url += '/format/' + format;
-        if (format == 'jpg') {
-          url += '/interlace/1';
+        url += '/format/' + format
+        if (format === 'jpg') {
+          url += '/interlace/1'
         }
       }
     }
   }
-  return url;
+  return url
 }
 
 export function apiPath() {
@@ -89,11 +89,11 @@ export function apiPath() {
   * status 未上线 -1，已上线 0
   * */
 export function matchStatusMap(state, status) {
-  var ret = '';
-  if(status == 0) {
-    ret = ['报名中', '待开赛', '进行中', '已结束'][state];
-  }else{
-    ret = '待上线';
+  var ret = ''
+  if (status === 0) {
+    ret = ['报名中', '待开赛', '进行中', '已结束'][state]
+  } else {
+    ret = '待上线'
   }
   return ret
 }
